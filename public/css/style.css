@@ -1,0 +1,659 @@
+
+body{
+  font-family: Geneva, Arial, Helvetica, sans-serif !important;
+  background-color: #f2f4f6 !important;
+  background-color: red;
+}
+.login-form {
+    margin-left: 42%;
+
+}
+.logo {
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo-img {
+  margin-top:60px;
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo-text {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+.login-form input {
+  border-radius: 3px;
+    border: 1px solid;
+    margin-bottom: 10px;
+    width:28%;
+    padding: 6px;
+    border-color:#d7d7d7;
+}
+
+.login-form .login-button{
+    background-color: #e31e24;
+    border-radius: 50px; 
+    font-weight:bold; 
+    background:#e31e25; 
+ -webkit-box-shadow:0px 4px 2px #bababa, inset 0px 0px 1px #3b0404; 
+ -moz-box-shadow: 0px 4px 2px #bababa,  inset 0px 0px 1px #3b0404;  
+ box-shadow:0px 4px 2px #bababa, inset 0px 0px 1px #3b0404;  
+  width: 10%;
+  margin-right: 8%;
+  color:white;
+  border-color: #d7d7d7;
+
+   }
+.login-button:hover{
+    background-color:#ac0a10;
+}
+.login-button:focus {
+outline: none !important
+}
+.logo-img-header {
+    float: left;
+  }
+
+ .logo-img-header img {
+      width: 50%;
+ }
+
+ header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left:40px !important;
+  margin-right: 40px !important;
+ }
+
+ a {
+  text-decoration: none !important;
+  color:#2a5885;
+ }
+
+
+ a:hover {
+    color: #e31e24 !important; /* Цвет ссылки при наведении на нее курсора мыши */  
+   }
+
+header{
+   /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+   flex: 0 0 auto;
+}
+main{
+   /* 1 flex-grow, 0 flex-shrink, auto flex-basis */
+  flex: 1 0 auto;
+  margin-bottom: 20px;
+  margin-left: 40px !important;
+  margin-right: 40px !important;
+}
+footer{
+   /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+   flex: 0 0 auto;
+   background-color: #2a2a29;
+   color: white;
+   text-align: center;
+   height: 60px;
+   padding: 20px;
+}
+html{
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.form {
+  
+}
+
+input[type=checkbox], input[type=radio] {
+height: 20px;
+}
+
+
+/* СТИЛИ СЕЛЕКТА */
+.select {
+    position: relative;
+}
+
+.select select {
+    display: block;
+    width: 100%; /* от ширины блока div */
+    padding: .3rem;/* отступы от текста до рамки */
+    background: none; /* убираем фон */
+    border: 1px solid #ccc; /* рамка */
+    border-radius: 3px;/* скругление полей формы */
+    -webkit-appearance: none;/* Chrome */
+    -moz-appearance: none;/* Firefox */
+    appearance: none;/* убираем дефолнтные стрелочки */
+    font-family: inherit;/* наследует от родителя */
+    font-size: 1rem;
+    color: #444;
+}
+
+
+ .select:after {
+    content: "";
+    display: block;
+    border-style: solid;
+    border-width: 6px 5px 0 5px;
+    border-color: #000 transparent transparent transparent;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    z-index: 1;
+    margin-top: -3px;
+}
+
+
+.button_form {
+  position: relative;
+left: 50%;
+transform: translate(-50%, 0);
+}
+
+
+
+/*Стили попап окна **/
+
+.content {
+  margin-top:20px;
+  margin-bottom: 20px;
+}
+
+button {
+    border-radius: 30px !important;
+    border: 1px solid;
+    margin-bottom: 10px;
+    padding: 7px;
+    border-radius: 50px; 
+    font-weight:bold; 
+    background:#e31e25; 
+ -webkit-box-shadow:0px 4px 2px #bababa, inset 0px 0px 1px #3b0404; 
+ -moz-box-shadow: 0px 4px 2px #bababa,  inset 0px 0px 1px #3b0404;  
+ box-shadow:0px 4px 2px #bababa, inset 0px 0px 1px #3b0404;  
+  width: 10%;
+  margin-right: 8%;
+  color:white;
+  border-color: #d7d7d7;
+}
+
+button:focus {
+outline: none !important
+}
+
+button:hover{
+    background-color:#ac0a10;
+}
+
+
+
+.blue_btn {
+  background-color: #e31e25;
+
+}
+
+/*END BUTTON
+
+/*POPUP*/
+
+.overlay_popup {
+  display:none;
+  position:fixed;
+  z-index: 999;
+  top:0;
+  right:0; 
+  left:0;
+  bottom:0;
+  background:#000; 
+  opacity:0.5;
+}
+
+.popup {
+  display: none;
+  position: relative;
+  z-index: 1000;
+  margin:0 25% 0 25%;
+  width:50%;
+    bottom: 100px;
+    position: fixed;
+
+}
+
+.catalog-popup{
+  bottom: 400px;
+    position: fixed;
+}
+
+
+form .button_form {
+	color:#fff;
+background-color: #ac0a10;
+}
+
+/*END POPUP*/
+
+.object{
+  width: 800px;
+  text-align: center;
+  background-color: #fff;
+}
+.admin-object {
+margin-top:-40%;
+}
+
+.header_popup {
+  background: #f2f4f6;
+  height: 10%;
+  text-align: left;
+  padding: 10px;
+}
+
+.form input {
+      border-radius: 3px;
+    border: 1px solid;
+    margin-bottom: 10px;
+    width: 65%;
+    padding: 6px;
+    border-color: #d7d7d7;
+}
+
+.select .row {
+  margin-bottom: 20px;
+}
+
+
+
+/*Мобильная версия */
+
+@media (max-width: 450px) {
+  .login-form {
+    margin-left: 24%;
+  }
+  .login-form input {
+    width:70%;
+  }
+
+  .login-form .login-button {
+    width: 30%;
+  }
+
+  .logo-text {
+        font-size: 14px;
+  }
+}
+
+
+@media (min-width: 450px) and (max-width: 1200px) {
+
+  .login-form .login-button {
+    margin-right: 40px;
+  }
+
+}
+
+
+@media (min-width: 450px) and (max-width: 1000px) {
+  .login-form .login-button{
+    margin-right: 70px;
+  }
+
+
+  .login-form input {
+    width:40%;
+  }
+  .login-form {
+    margin-left: 37%;
+}
+  .login-form .login-button {
+    width: 14%;
+  }
+
+}
+
+@media (min-width: 450px) and (max-width: 900px) {
+    .login-form .login-button{
+    margin-right: 55px;
+  }
+}
+
+@media (max-width: 1152px) {
+  .blue_btn{
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 897px) {
+  .blue_btn{
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 769px) {
+  .blue_btn{
+    font-size: 9px;
+  }
+}
+@media (min-width: 450px) and (max-width: 800px) {
+    .login-form .login-button{
+    margin-right: 45px;
+  }
+  .login-form input {
+    width: 200px;
+}
+}
+
+@media (min-width: 450px) and (max-width: 673px){
+  .login-form {
+    margin-left: 200px;
+}
+}
+@media (min-width: 450px) and (max-width: 605px){
+.login-form {
+    margin-left: 190px;
+}
+}
+@media (min-width: 450px) and (max-width: 605px){
+.login-form {
+    margin-left: 170px;
+}
+}
+
+.table-main{
+  font-size: 11px;
+text-align: center;
+    display: inline-block;
+  background-color: #fff;
+  padding: 2rem 2rem;
+  color: #000;
+}
+.catalog{
+  width: 80%;
+  margin-left: 8em;
+}
+table{
+  border: 1px solid #ccc;
+    width: 100%;
+    margin:0;
+    padding:0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table tr {
+    border: 1px solid #ddd;
+    padding: 5px;
+  }
+ 
+  table th, table td {
+    padding: 10px;
+    text-align: center;
+    border-right: 1px solid #ddd;
+  }
+ 
+  table th {
+    color: #fff;
+    background-color: #2a2a29;
+    text-transform: uppercase;
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+td .button_form{
+  background-color: #e31e25;
+    color: #fff;
+}
+
+
+td .button_form:hover {
+    background-color: #ac0a10;
+}
+
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+  table thead {
+    display: none;
+  }
+  table tr {
+    margin-bottom: 10px;
+    display: block;
+    border-bottom: 2px solid #ddd;
+    background-color: #fff;
+  }
+  table td {
+    display: block;
+    text-align: right;
+    font-size: 13px;
+    border-bottom: 1px dotted #ccc;
+    border-right: 1px solid transparent;
+  }
+  table td:last-child {
+    border-bottom: 0;
+  }
+  table td:before {
+    content: attr(data-label);
+    float: left;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .button_form {
+    position: relative;
+    left: 0%;
+    transform: translate(0%, 0);
+}
+input {
+  width:45%;
+}
+.table-main {
+  padding: 0;
+  background-color: #f2f4f6;
+}
+
+.show_popup{
+  width:100%;
+}
+
+
+.container-header .row {
+  margin-top: 6em;
+  text-align: right;
+  margin-right: 0.5em;
+}
+.catalog-input {
+  left: 0% !important;
+  width: 50% !important;
+}
+
+.catalog{
+  width: 100%;
+  margin-left: 0px;
+}
+.catalog_button {
+  margin-left: 0em !important;
+}
+
+
+
+}
+
+
+input{
+border-radius: 3px;
+    border: 1px solid;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 6px;
+    border-color: #d7d7d7;
+}
+
+.admin-table {
+    font-size: 11px;
+    text-align: center;
+    display: inline-block;
+    background-color: #fff;
+    padding: 1rem 1rem;
+    color: #000;
+}
+
+
+.catalog-input {
+  width: 50%;
+  left: 25%;
+}
+
+.catalog_button {
+  margin-left: 5em;
+}
+
+.datepicker {
+  width: 11%;
+}
+
+.date_button {
+  width:11%;
+  margin-left: 10px;
+  background-color: #e31e25;
+  color:#fff;
+}
+.date_button:hover {
+    background-color: #ac0a10;
+}
+
+.date_form {
+  margin-top:20px;
+  margin-bottom: 20px;
+
+}
+
+
+.edit {
+  width: 25%;
+  margin-top: 30px;
+      border-radius: 30px !important;
+    border: 1px solid;
+    font-size: 14px;
+    background-color: #e31e25;
+    color:#fff;
+    border: 1px solid;
+    font-weight: bold;
+    box-shadow: 0px 4px 2px #bababa, inset 0px 0px 1px #3b0404;
+    border-color: #d7d7d7;
+}
+.edit:hover{
+  background-color: #ac0a10;
+}
+
+
+.back_button {
+    margin-top: 20px;
+    margin-left: 5%;
+  }
+
+  .alldown {
+    width: 20%;
+  }
+
+.button_form_report {
+  background-color: #e31e25;
+    color: #fff;
+}
+.button_form_report:hover{
+background-color:#ac0a10;
+}
+
+.report_admin {
+  width: 25%;
+  margin: auto;
+}
+
+@media screen and (max-width: 1601px) {
+  .table-main {
+    padding: 1rem 1rem;
+  }
+
+  .hidden_table {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1537px) {
+  .table-main {
+    padding: 0.5rem 0.5rem;
+  }
+}
+
+
+@media screen and (max-width: 1366px) {
+  .table-main {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+.date_button {
+  width: 100%;
+  margin-left: 0px;
+  margin-top: 20px;
+  }
+
+  .datepicker {
+    width: 100%;
+  }
+
+  .alldown {
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.popup {
+  position: relative;
+  margin: 0px 0px 0px 0px;
+  margin-left: -40px;
+
+}
+.object {
+    width: 400px;
+  }
+  .edit {
+    width: 100%;
+  }
+  .back_button {
+    margin-left: 0px;
+  }
+  .back_button button {
+    width:100%;
+  }
+}
+
+@media screen and (max-width: 1700px) {
+.datepicker {
+    width: 15%;
+}
+  }
+
+
+@media screen and (max-width: 1400px) {
+  .date_form {
+  font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .date_form {
+  font-size: 12px;
+  }
+}

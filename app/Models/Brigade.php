@@ -12,4 +12,9 @@ class Brigade extends Model
     protected $table = 'brigade';
     protected $primaryKey ='idBrigade';
     public $timestamps = false;
+
+
+
+    
+
 }

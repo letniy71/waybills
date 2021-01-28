@@ -20,5 +20,7 @@ Route::get('/', function () {
 
 //Справочник авто
 
-Route::get('/auto', 'AutoController@getAuto');
+Route::get('auto', 'App\Http\Controllers\AutoController@getAuto');
+//Добавление Авто
+Route::post('auto', 'App\Http\Controllers\AutoController@addAuto');
 

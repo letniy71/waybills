@@ -15,7 +15,7 @@ class Auto extends Model
 
     public function brigade()
     {
-        return $this->belongsTo('App\Movel\Brigade', 'idBrigade','nameBrigade');
+        return $this->belongsTo('\App\Models\Brigade','idBrigade','idBrigade');
     }
     
 

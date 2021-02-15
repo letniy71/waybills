@@ -10,7 +10,7 @@ class Auto extends Model
     use HasFactory;
 
     protected $table = 'auto';
-    protected $primaryKey ='idAuto';
+    protected $primaryKey ='idauto';
     public $timestamps = false;
 
     public function brigade()

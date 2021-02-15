@@ -13,8 +13,8 @@ class Brigade extends Model
     protected $primaryKey ='idBrigade';
     public $timestamps = false;
 
-
-
-    
-
+    public function organization()
+    {
+        return $this->belongsTo('\App\Models\Organization','idOrganization','idOrganization');
+    }
 }

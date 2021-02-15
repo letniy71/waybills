@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Auto;
 use App\Models\Brigade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AutoController extends Controller
 {
@@ -18,8 +19,7 @@ class AutoController extends Controller
 
    		return view('auto', ['auto'=>$auto, 'brigade'=>$brigade]); 
     }
-
-
+//Добавляем авто
     public function addAuto(Request $request)
   	{
 	    if(!empty($_POST['model']&&$_POST['number']&&$_POST['name_brigade_auto'])) 
@@ -37,13 +37,21 @@ class AutoController extends Controller
 		    $auto->active = 1;
 
 		    $auto->save();
+		    return redirect()->route('all-auto');
 		} else {
 			echo "заполните данные";
 		}
   }
+//Удаляем Авто
+  public function deleteAuto(Request $request){
 
-  public function deleteAuto($id){
-  	Auto::find($id)->delete();
+  	DB::update('update auto set active = 0 where idAuto = ?', [$request->idAuto]);
+
+/* Так не работает .....
+  	$auto = Auto::find($request->idAuto);
+ 	$auto->active =0;
+ 	$auto->save();
+ 	*/
   	return redirect()->route('all-auto');
   }
 }

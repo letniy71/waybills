@@ -19,7 +19,7 @@
   			<td data-label="Модель">{{$row->model}}</td>
   			<td data-label="Номер">{{$row->number}}</td>
   			<td data-label="Бригада">{{$row->brigade->nameBrigade}}</td>
-  			<td data-label="Удалить"><a href ="del.php?id=' . $row['idAuto']. '"><input class="button_form catalog-input" type="submit" value="удалить"></a></td>
+  			<td data-label="Удалить"><a href ="{{route('delete-auto', $row->idAuto)}}"><input class="button_form catalog-input" type="submit" value="удалить"></a></td>
   		</tr></tbody>
 		@endforeach
 

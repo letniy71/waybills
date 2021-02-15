@@ -41,4 +41,9 @@ class AutoController extends Controller
 			echo "заполните данные";
 		}
   }
+
+  public function deleteAuto($id){
+  	Auto::find($id)->delete();
+  	return redirect()->route('all-auto');
+  }
 }

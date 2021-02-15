@@ -20,7 +20,9 @@ Route::get('/', function () {
 
 //Справочник авто
 
-Route::get('auto', 'App\Http\Controllers\AutoController@getAuto');
+Route::get('auto', 'App\Http\Controllers\AutoController@getAuto')->name('all-auto');
 //Добавление Авто
 Route::post('auto', 'App\Http\Controllers\AutoController@addAuto');
+//Удаление Авто
+Route::get('auto/delete/{id}', 'App\Http\Controllers\AutoController@deleteAuto')->name('delete-auto');
 

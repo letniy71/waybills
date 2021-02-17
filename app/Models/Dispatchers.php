@@ -9,7 +9,7 @@ class Dispatchers extends Model
 {
     use HasFactory;
     protected $table = 'dispatchers';
-    protected $primaryKey ='idDispatchers';
+    protected $primaryKey ='idDispatcher';
     public $timestamps = false;
 
     public function brigade()

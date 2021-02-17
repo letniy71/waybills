@@ -87,3 +87,6 @@ Route::get('/', function () {
 	Route::post('waybills', 'App\Http\Controllers\WaybillsController@addWaybills');
 	//Удаление Путевых Листов
 	Route::post('waybills/delete', 'App\Http\Controllers\WaybillsController@deleteWaybills')->name('delete-waybills');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

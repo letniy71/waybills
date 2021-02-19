@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class AutoController extends Controller
 {
+	
     //Получаем список авто
     public function getAuto()
     {

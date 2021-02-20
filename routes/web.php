@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::group(['middleware' => 'admin'], function () {
     // Здесь перечисляются маршруты, доступ к которым будет открыт только администраторам
@@ -95,6 +93,10 @@ Route::get('waybills', 'App\Http\Controllers\WaybillsController@getWaybills')->n
 Route::post('waybills', 'App\Http\Controllers\WaybillsController@addWaybills');
 //Удаление Путевых Листов
 Route::post('waybills/delete', 'App\Http\Controllers\WaybillsController@deleteWaybills')->name('delete-waybills');
+
+Route::get('/', function () {
+    return view('welcome');
+});
 });
 
 
@@ -103,22 +105,3 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

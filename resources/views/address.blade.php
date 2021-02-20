@@ -5,6 +5,7 @@
 @section('content')
 <main>
 	<div class="table-main catalog">
+    <h6 style="margin-bottom: 20px;">Адреса</h6>
 	<table>
 		<thead>
 		<tr>

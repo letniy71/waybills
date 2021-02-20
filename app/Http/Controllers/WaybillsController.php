@@ -39,11 +39,10 @@ class WaybillsController extends Controller
 		$auto = Auto::where('active', 1)
 		    	->get();  
 		$address = Address::where('active', 1)
-		    	->get();
-		$user_role = Auth::user()->isAdmin();    	
+		    	->get();    	
 
 
-   		return view('waybills', ['waybills'=>$waybills, 'brigade'=>$brigade, 'route'=>$route, 'org'=>$org, 'mechanics'=>$mechanics, 'drivers'=>$drivers, 'auto'=>$auto, 'address'=>$address,  'dispatchers'=>$dispatchers,'user_role'=>$user_role]); 
+   		return view('waybills', ['waybills'=>$waybills, 'brigade'=>$brigade, 'route'=>$route, 'org'=>$org, 'mechanics'=>$mechanics, 'drivers'=>$drivers, 'auto'=>$auto, 'address'=>$address,  'dispatchers'=>$dispatchers]); 
     }
 //Добавляем 
    

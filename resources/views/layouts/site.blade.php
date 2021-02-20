@@ -26,24 +26,30 @@
 	<body>
 		<header>
 			<div class="logo-img-header">
-				 <a href ="/pages/waybill-user.php"><img src ="../img/logo.png"></a>
+				 <a href ="/"><img src ="../img/logo.png"></a>
 			</div>
 			<div class="container-header">
 				<div class="row">
 					<div class="col-lg-6 col-xs-6">
-						
+						Вы зашли как {{Auth::user()->name}}
 					</div>
 					<div class="col-lg-1 col-xs-1">
 						<a class="setting-links" href="../pages/report_admin.php">Отчеты</a>
 					</div>
 					<div class="col-lg-1 col-xs-1">
-						<a class="setting-links" href="/">Настройки</a>
+						<a class="setting-links" href="/settings">Настройки</a>
 					</div>
 					<div class="col-lg-1 col-xs-1">
 						<a class="setting-links" href="../pages/support.php">Помощь</a>
 					</div>
 					<div class="col-lg-3 col-xs-3" style="text-align: right;">
-						<a class="setting-links" href="../logout.php">Выход</a>
+                            <a  href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Выход
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
 					</div>
 				</div>
 				<div style="clear: left;"></div>

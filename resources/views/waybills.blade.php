@@ -32,7 +32,7 @@
 		@endforeach
 
 	</table>
-    тут{{dump($user_role)}}
+    
 </div>
 
 

@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'admin'], function () {
     // Здесь перечисляются маршруты, доступ к которым будет открыт только администраторам
+//Настройки
+	Route::get('/settings', function () {
+    return view('main');
+});
 
 //Справочник авто
 	Route::get('auto', 'App\Http\Controllers\AutoController@getAuto')->name('all-auto');
@@ -95,7 +99,7 @@ Route::post('waybills', 'App\Http\Controllers\WaybillsController@addWaybills');
 Route::post('waybills/delete', 'App\Http\Controllers\WaybillsController@deleteWaybills')->name('delete-waybills');
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('all-waybills');
 });
 });
 

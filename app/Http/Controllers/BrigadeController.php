@@ -10,7 +10,7 @@ class BrigadeController extends Controller
 {
     //Получаем список 
     public function getBrigade()
-    {
+    { 
     	$brigade = Brigade::where('active', 1)
 		    	->get();
 		$org = Organization::where('active', 1)

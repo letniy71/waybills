@@ -12,6 +12,6 @@
 <a href="mechanics">Механики</a><br><br>
 <a href="address">Адреса</a><br><br>
 <a href="waybills">Просмотр всех путевых листов</a><br><br>
-<a href="/pages/reg.php">Добавление пользователей</a>
+<a href="register">Добавление пользователей</a>
 </main>
 @endsection()

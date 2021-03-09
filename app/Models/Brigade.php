@@ -15,6 +15,7 @@ class Brigade extends Model
 
     public function organization()
     {
-        return $this->belongsTo('\App\Models\Organization','idOrganization','idOrganization');
+        return $this->belongsTo('\App\Models\Organization','idorganization','idorganization');
     }
 }
+ 

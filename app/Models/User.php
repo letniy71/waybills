@@ -20,6 +20,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'login',
+        'idRole',
+        'idBrigade',
     ];
 
     /**
@@ -46,6 +49,12 @@ class User extends Authenticatable
     return $this->belongsTo('\App\Models\Role', 'idRole','idRole');
     }
 
+    public function brigade()
+    {   
+    return $this->belongsTo('\App\Models\Brigade', 'idBrigade','idBrigade');
+    }
+
+//Берем из таблицы ролей admin
 
     public function isAdmin()
     {

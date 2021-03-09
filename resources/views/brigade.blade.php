@@ -14,19 +14,23 @@
 			<th>Удалить</th>
 		</tr>
 		</thead>
-		@foreach ($brigade as $row)
+    
+
+    @foreach ($brigade as $row)
       <tbody><tr>
-  			<td data-label="Навзание подрядчика">{{$row->nameBrigade}}</td>
-        <td data-label="Навзание организации">{{$row->idorganization}}</td>
-        <td>
-    			<form action="{{route('delete-brigade')}}" method="post">
-              <input type="hidden"  name="id" value="{{$row->idBrigade}}">
-              <input class="button_form catalog-input" type="submit" value="удалить">
-              {{ csrf_field()}}
+              <td data-label="Навзание подрядчика">{{$row->nameBrigade}}</td>
+        <td data-label="Навзание организации">{{$row->organization->nameOrganization}}</td>
+        <td data-label="Удалить">
+          <form action="{{route('delete-brigade')}}" method="post">
+            <input type="hidden"  name="id" value="{{$row->idBrigade}}">
+            <input class="button_form catalog-input" type="submit" value="удалить">
+            {{ csrf_field()}}
           </form>
-        </td>
-  		</tr></tbody>
-		@endforeach
+
+            </td>
+      </tr></tbody>
+    @endforeach
+
 
 	</table>
 </div>

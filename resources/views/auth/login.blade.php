@@ -16,7 +16,7 @@
                     <form class="login-form" method="POST" action="{{ route('login') }}">
                         @csrf
                         <span>Введите Ваш логин</span><br>
-                        <input placeholder="Логин" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus><br>
+                        <input placeholder="Логин" id="login" type="name" class="form-control @error('login') is-invalid @enderror" name="login" value="{{ old('login') }}" required autocomplete="login" autofocus><br>
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">

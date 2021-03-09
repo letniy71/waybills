@@ -17,7 +17,7 @@
 		</thead>
 		@foreach ($drivers as $row)
       <tbody><tr>
-  			<td data-label="ФИО">{{$row->name}}</td>
+        			<td data-label="ФИО">{{$row->name}}</td>
   			<td data-label="Удостоверение">{{$row->sertificate}}</td>
   			<td data-label="Бригада">{{$row->brigade->nameBrigade}}</td>
   			<td data-label="Удалить">

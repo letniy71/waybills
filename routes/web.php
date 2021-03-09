@@ -73,7 +73,7 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('address', 'App\Http\Controllers\AddressController@getAddress')->name('all-address');
 	//Добавление Адресов
 	Route::post('address', 'App\Http\Controllers\AddressController@addAddress');
-	//Удаление Адресов
+	//Удаление Адресовs
 	Route::post('address/delete', 'App\Http\Controllers\AddressController@deleteAddress')->name('delete-address');
 
 
@@ -84,11 +84,25 @@ Route::group(['middleware' => 'admin'], function () {
 	//Удаление Адресов
 	Route::post('route/delete', 'App\Http\Controllers\RouteController@deleteRoute')->name('delete-route');
 
+//Регистрация пользоватлей
+	//Список пользоватлей
+	Route::get('register', 'App\Http\Controllers\Auth\RegisterController@getUsers');
+	//Добавление пользовтелей
+	Route::post('register', 'App\Http\Controllers\Auth\RegisterController@register')->name('register');
+	//Удаление пользователей
+	Route::post('register/delete', 'App\Http\Controllers\Auth\RegisterController@deleteuser')->name('delete-register');
+	//Редактирование пользователей
+	//Route::post('register/edit', 'App\Http\Controllers\Auth\RegisterController@edituserShow')->name('edit-register-show');
+	//Route::post('register/edit-user', 'App\Http\Controllers\Auth\RegisterController@editRegisterUser')->name('edit-register-user');
 
-//Справочник Путевых Листов
 	
 
 });
+Auth::routes(['register' => false]);
+
+
+//Справочник Путевых Листов
+
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -98,14 +112,11 @@ Route::post('waybills', 'App\Http\Controllers\WaybillsController@addWaybills');
 //Удаление Путевых Листов
 Route::post('waybills/delete', 'App\Http\Controllers\WaybillsController@deleteWaybills')->name('delete-waybills');
 
+
 Route::get('/', function () {
     return redirect()->route('all-waybills');
 });
 });
 
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

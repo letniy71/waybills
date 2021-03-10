@@ -20,40 +20,109 @@
 	<div class="table-main catalog">
     <h6 style="margin-bottom: 20px;">Путевые листы за 
     @if(!empty($_GET['date']))
-    {{$_GET['date']}}
+        {{$_GET['date']}}
     @endif
     </h6>
 	<table>
 		<thead>
 		<tr>
+        <th>Дата</th>
         <th>Серия</th>
         <th>Номер</th>
         <th>Гос.Номер</th>
-        <th class="hidden_table">Модель авто</th>
+        <th>Модель авто</th>
         <th>Водитель</th> 
-        <th  class="hidden_table">Диспетчер</th>
-        <th  class="hidden_table">Механик</th>
+        <th>Диспетчер</th>
+        <th>Механик</th>
+        <th>Время по графику</th>
 		</tr>
 		</thead>
 
         @if(isset($waybills))
-		@foreach ($waybills as $row)
-      <tbody><tr>
-  			<td data-label="Серия">{{$row->serialWay}}</td>
-        <td data-label="Номер">{{$row->numberWay}}</td>
-        <td data-label="Гос.Номер">{{$row->auto->number}}</td>
-        <td data-label="Модель авто">{{$row->auto->model}}</td>
-        <td data-label="Водитель">{{$row->drivers->name}}</td>
-        <td data-label="Диспетчер">{{$row->dispatchers->nameDispatcher}}</td>
-        <td data-label="Механик">{{$row->mechanics->nameMechanic}}</td>
-  		</tr></tbody> 
-		@endforeach
+    		@foreach ($waybills as $row)
+                <tbody>
+                    <tr>
+                        <td data-label="Серия">{{$row->date}}</td>
+                  		<td data-label="Серия">{{$row->serialWay}}</td>
+                        <td data-label="Номер">{{$row->numberWay}}</td>
+                        <td data-label="Гос.Номер">{{$row->auto->number}}</td>
+                        <td data-label="Модель авто">{{$row->auto->model}}</td>
+                        <td data-label="Водитель">{{$row->drivers->name}}</td>
+                        <td data-label="Диспетчер">{{$row->dispatchers->nameDispatcher}}</td>
+                        <td data-label="Механик">{{$row->mechanics->nameMechanic}}</td>
+                        <td data-label="Время по графику">{{$row->typeWB->type}}</td>
+          		    </tr>
+                </tbody> 
+    		@endforeach
         @endif
-
-	</table>
-    
+	</table> 
 </div>
 
+@if(!empty($_GET['date']))
+<div class="content">
+    <button class="show_popup blue_btn" rel="popup1">Добавить</button>
+</div>
+ <div class="overlay_popup"></div>
+  <div class="popup" id="popup1">
+    <div class="object">
+        <div class="header_popup">
+            <h4>Формирование путевого листа</h4>
+        </div>
+      
+
+        <form action="{{route('add-waybills')}}" method="POST">
+            <table>
+                <thead>
+                  <tr>
+                    <th>Водитель</th>
+                    <th>Номер</th>
+                    <th>Время по графику</th>
+                    <th>Добавить</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @for ($i=1; $i<=10; $i++)
+                        <tr>
+                            <input type="hidden" name="date" value="{{$_GET['date']}}">
+                            <input type="hidden" name="brigade" value="{{Auth::user()->idBrigade}}">
+                            <td>
+                                <div class="select">
+                                    <select name="name_drivers_waybill{{$i}}">
+                                        @foreach ($drivers as $row)
+                                            <option value="{{$row->name}}">{{$row->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="select">
+                                    <select name="number_auto_waybill{{$i}}">
+                                        @foreach ($auto as $row)
+                                            <option value="{{$row->number}}">{{$row->number}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="select">
+                                    <select name="typeWB{{$i}}">
+                                        @foreach ($typeWB as $row)
+                                            <option value="{{$row->type}}">{{$row->type}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="checkWaybill{{$i}}" value="Yes" />
+                            </td>
+                        </tr>
+                    @endfor
+                </tbody>
+            </table>
+            <input class="button_form" type="submit" value="добавить">
+            {{ csrf_field()}}
+        </form>
+        @endif
 <script src="jquery/jquery-1.11.2.min.js"></script> 
   <script>
     $('.show_popup').click(function() {

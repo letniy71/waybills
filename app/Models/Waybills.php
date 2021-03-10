@@ -60,4 +60,9 @@ class Waybills extends Model
         return $this->belongsTo('\App\Models\Address','idAddress','idAddress');
     }
 
+    public function typeWB()
+    {
+        return $this->belongsTo('\App\Models\TypeWB','idtypeWB','idtypeWB');
+    }
+
 }

@@ -19,10 +19,6 @@ class CreateWaybillsTable extends Migration
             $table->string('date', 12);
             $table->string('serialWay', 24);
             $table->string('numberWay', 24);
-            $table->string('mileageWB_before', 255);
-            $table->string('mileageWB_after', 255);
-            $table->string('department', 45);
-            $table->string('month', 24);
 
             $table->bigInteger('idDrivers')->nullable()->unsigned();
            

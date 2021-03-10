@@ -26,7 +26,7 @@
 		  			<td data-label="Тип УЗ">{{$row->role->name}}</td>
 		  			<td data-label="Бригада">{{$row->brigade->nameBrigade}}</td>
 		  			<!--<td data-label="Редактировать">
-		  				<form action="{{route('edit-register-show')}}" method="post">
+		  				<form action="" method="post">
 		            		<input type="hidden"  name="id" value="{{$row->id}}">
 		            		<input class="button_form catalog-input" type="submit" value="редактировать">
 		            		{{ csrf_field()}}

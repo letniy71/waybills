@@ -107,11 +107,13 @@ Auth::routes(['register' => false]);
 Route::group(['middleware' => 'auth'], function () {
 
 Route::get('waybills', 'App\Http\Controllers\WaybillsController@getWaybills')->name('all-waybills');
+Route::get('waybills/{$date}', 'App\Http\Controllers\WaybillsController@getWaybills')->name('date-waybills');
+
 //Добавление Путевых Листов
 Route::post('waybills', 'App\Http\Controllers\WaybillsController@addWaybills');
 //Удаление Путевых Листов
 Route::post('waybills/delete', 'App\Http\Controllers\WaybillsController@deleteWaybills')->name('delete-waybills');
-
+//По дате
 
 Route::get('/', function () {
     return redirect()->route('all-waybills');

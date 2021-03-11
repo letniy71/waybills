@@ -113,7 +113,10 @@ Route::get('waybills/{$date}', 'App\Http\Controllers\WaybillsController@getWaybi
 Route::post('waybills', 'App\Http\Controllers\WaybillsController@addWaybills')->name('add-waybills');;
 //Удаление Путевых Листов
 Route::post('waybills/delete', 'App\Http\Controllers\WaybillsController@deleteWaybills')->name('delete-waybills');
-//По дате
+//Редактирование Путевых Листов
+Route::get('waybills/edit', 'App\Http\Controllers\WaybillsController@showEditWaybills')->name('show-edit-waybills');
+Route::post('waybills/edit', 'App\Http\Controllers\WaybillsController@editWaybills')->name('edit-waybills');
+
 
 Route::get('/', function () {
     return redirect()->route('all-waybills');

@@ -18,7 +18,7 @@ class CreateRouteTable extends Migration
             $table->id('idroute');
             $table->string('route', 256);
             $table->integer('active');
-            $table->bigInteger('idBrigade')->nullable();
+
             $table->timestamps();
         });
     }

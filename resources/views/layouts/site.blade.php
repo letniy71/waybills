@@ -60,7 +60,7 @@
 @yield('content')
 
 <footer class="footer">
-    <p>&#174; Путевые листы </p>
+    <p>&#174; Петров Игорь </p>
 </footer>
 </body>
 </html>

@@ -35,6 +35,10 @@
         <th>Диспетчер</th>
         <th>Механик</th>
         <th>Время по графику</th>
+        <th>Редактировать</th>
+        @if(Auth::user()->idRole == 1)
+            <th>Удалить</th>
+        @endif
 		</tr>
 		</thead>
 
@@ -51,6 +55,23 @@
                         <td data-label="Диспетчер">{{$row->dispatchers->nameDispatcher}}</td>
                         <td data-label="Механик">{{$row->mechanics->nameMechanic}}</td>
                         <td data-label="Время по графику">{{$row->typeWB->type}}</td>
+                        <td data-label="Редактировать">
+                            <form action="{{route('show-edit-waybills')}}" method="GET">
+                                <input type="hidden" name="idWaybills" value="{{$row->idWaybills}}">
+                                <input type="hidden"  name="date" value="{{$row->date}}">
+                                <input class="button_form"  type="submit" value="редактировать">
+                            </form>
+                        </td>
+                        @if(Auth::user()->idRole == 1)
+                            <td data-label="Удалить">
+                              <form action="{{route('delete-waybills')}}" method="post">
+                                <input type="hidden"  name="idWaybills" value="{{$row->idWaybills}}">
+                                <input type="hidden"  name="date" value="{{$row->date}}">
+                                <input class="button_form catalog-input" type="submit" value="удалить">
+                                {{ csrf_field()}}
+                              </form>
+                            </td>
+                        @endif
           		    </tr>
                 </tbody> 
     		@endforeach

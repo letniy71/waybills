@@ -29,6 +29,7 @@ class WaybillsController extends Controller
 	    	
 	    	$idBrigade = Auth::user()->idBrigade;
 	    	$waybills = Waybills::where('idBrigade', $idBrigade)
+	    			->where('active', 1)
 	    			->where('date', $date)
 			    	->get();    
 			$brigade = Brigade::where('active', 1)
@@ -53,6 +54,7 @@ class WaybillsController extends Controller
 
 			//Для админа
 			$waybillsAdmin = Waybills::where('date', $date)
+							->where('active', 1)
 	    					->get(); 
 
 			$driversAdmin = Drivers::where('active', 1)
@@ -176,7 +178,7 @@ class WaybillsController extends Controller
 			    	$typeWB = TypeWB::where('type',$_POST['typeWB' .$i])
 			    				->first();
 			    	$waybills->idtypeWB = $typeWB->idtypeWB;
-
+			    	$waybills->active = 1;
 				    $waybills->save();
 				}
 			}
@@ -189,20 +191,23 @@ class WaybillsController extends Controller
   	$idWaybills = $request->idWaybills;
   	$date = $request->date;
   	$waybills = Waybills::where('idWaybills', $idWaybills)
-  						->delete();
+  						->first();
+  	$waybills->active = 0;
+  	$waybills->save();
   	return redirect("/waybills/?date={$request->date}");
   }
   //Передаем данные для редактирования на страницу редакирования
   public function showEditWaybills(Request $request){
   	$idWaybills = $request->idWaybills;
   	$waybill = Waybills::where('idWaybills', $idWaybills)
+  						->where('active', 1)
 				    	->first();
-
+	$brigade = $brigade = Brigade::where('active', 1)
+				    	->get();
   	if(Auth::user()->idRole == 1){
 		$waybills = Waybills::all();  
 
-		$brigade = $brigade = Brigade::where('active', 1)
-				    	->get();
+		
 
 		$drivers = Drivers::where('active', 1)
 				    	->get();

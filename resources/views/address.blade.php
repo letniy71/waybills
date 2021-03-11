@@ -73,7 +73,6 @@
                 </div>
               </div>
               <input type="submit" value="добавить">
-
               {{ csrf_field()}}
            </form>
           </div>

@@ -40,7 +40,7 @@ class AddressController extends Controller
 		    $address->save();
 		    return redirect()->route('all-address');
 		} else {
-			echo "заполните данные";
+			return redirect()->route('all-address');
 		}
   }
 //Удаляем 

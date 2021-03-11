@@ -27,6 +27,9 @@
 		<thead>
 		<tr>
         <th>Дата</th>
+        @if(Auth::user()->idRole == 1)
+            <th>Бригада</th>
+        @endif
         <th>Серия</th>
         <th>Номер</th>
         <th>Гос.Номер</th>
@@ -43,26 +46,27 @@
 		</thead>
 
         @if(isset($waybills))
-    		@foreach ($waybills as $row)
-                <tbody>
-                    <tr>
-                        <td data-label="Серия">{{$row->date}}</td>
-                  		<td data-label="Серия">{{$row->serialWay}}</td>
-                        <td data-label="Номер">{{$row->numberWay}}</td>
-                        <td data-label="Гос.Номер">{{$row->auto->number}}</td>
-                        <td data-label="Модель авто">{{$row->auto->model}}</td>
-                        <td data-label="Водитель">{{$row->drivers->name}}</td>
-                        <td data-label="Диспетчер">{{$row->dispatchers->nameDispatcher}}</td>
-                        <td data-label="Механик">{{$row->mechanics->nameMechanic}}</td>
-                        <td data-label="Время по графику">{{$row->typeWB->type}}</td>
-                        <td data-label="Редактировать">
-                            <form action="{{route('show-edit-waybills')}}" method="GET">
-                                <input type="hidden" name="idWaybills" value="{{$row->idWaybills}}">
-                                <input type="hidden"  name="date" value="{{$row->date}}">
-                                <input class="button_form"  type="submit" value="редактировать">
-                            </form>
-                        </td>
-                        @if(Auth::user()->idRole == 1)
+            @if(Auth::user()->idRole == 1)
+                @foreach ($waybillsAdmin as $row)
+                    <tbody>
+                        <tr>
+                            <td data-label="Дата">{{$row->date}}</td>
+                            <td data-label="Бригада">{{$row->brigade->nameBrigade}}</td>
+                            <td data-label="Серия">{{$row->serialWay}}</td>
+                            <td data-label="Номер">{{$row->numberWay}}</td>
+                            <td data-label="Гос.Номер">{{$row->auto->number}}</td>
+                            <td data-label="Модель авто">{{$row->auto->model}}</td>
+                            <td data-label="Водитель">{{$row->drivers->name}}</td>
+                            <td data-label="Диспетчер">{{$row->dispatchers->nameDispatcher}}</td>
+                            <td data-label="Механик">{{$row->mechanics->nameMechanic}}</td>
+                            <td data-label="Время по графику">{{$row->typeWB->type}}</td>
+                            <td data-label="Редактировать">
+                                <form action="{{route('show-edit-waybills')}}" method="GET">
+                                    <input type="hidden" name="idWaybills" value="{{$row->idWaybills}}">
+                                    <input type="hidden"  name="date" value="{{$row->date}}">
+                                    <input class="button_form"  type="submit" value="редактировать">
+                                </form>
+                            </td>
                             <td data-label="Удалить">
                               <form action="{{route('delete-waybills')}}" method="post">
                                 <input type="hidden"  name="idWaybills" value="{{$row->idWaybills}}">
@@ -71,10 +75,33 @@
                                 {{ csrf_field()}}
                               </form>
                             </td>
-                        @endif
-          		    </tr>
-                </tbody> 
-    		@endforeach
+                        </tr>
+                    </tbody> 
+                @endforeach
+            @else
+        		@foreach ($waybills as $row)
+                    <tbody>
+                        <tr>
+                            <td data-label="Дата">{{$row->date}}</td>
+                      		<td data-label="Серия">{{$row->serialWay}}</td>
+                            <td data-label="Номер">{{$row->numberWay}}</td>
+                            <td data-label="Гос.Номер">{{$row->auto->number}}</td>
+                            <td data-label="Модель авто">{{$row->auto->model}}</td>
+                            <td data-label="Водитель">{{$row->drivers->name}}</td>
+                            <td data-label="Диспетчер">{{$row->dispatchers->nameDispatcher}}</td>
+                            <td data-label="Механик">{{$row->mechanics->nameMechanic}}</td>
+                            <td data-label="Время по графику">{{$row->typeWB->type}}</td>
+                            <td data-label="Редактировать">
+                                <form action="{{route('show-edit-waybills')}}" method="GET">
+                                    <input type="hidden" name="idWaybills" value="{{$row->idWaybills}}">
+                                    <input type="hidden"  name="date" value="{{$row->date}}">
+                                    <input class="button_form"  type="submit" value="редактировать">
+                                </form>
+                            </td>
+              		    </tr>
+                    </tbody> 
+        		@endforeach
+        @endif
         @endif
 	</table> 
 </div>
@@ -95,6 +122,9 @@
             <table>
                 <thead>
                   <tr>
+                    @if(Auth::user()->idRole == 1)
+                        <th>Бригада</th>
+                    @endif
                     <th>Водитель</th>
                     <th>Номер</th>
                     <th>Время по графику</th>
@@ -106,24 +136,54 @@
                         <tr>
                             <input type="hidden" name="date" value="{{$_GET['date']}}">
                             <input type="hidden" name="brigade" value="{{Auth::user()->idBrigade}}">
-                            <td>
-                                <div class="select">
-                                    <select name="name_drivers_waybill{{$i}}">
-                                        @foreach ($drivers as $row)
-                                            <option value="{{$row->name}}">{{$row->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="select">
-                                    <select name="number_auto_waybill{{$i}}">
-                                        @foreach ($auto as $row)
-                                            <option value="{{$row->number}}">{{$row->number}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </td>
+                            @if(Auth::user()->idRole == 1)
+                                <td>
+                                    <div class="select">
+                                        <select name="name_brigade_admin{{$i}}">
+                                            @foreach ($brigade as $row)
+                                                <option value="{{$row->nameBrigade}}">{{$row->nameBrigade}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="select">
+                                        <select name="name_drivers_waybill{{$i}}">
+                                            @foreach ($driversAdmin as $row)
+                                                <option value="{{$row->name}}">{{$row->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="select">
+                                        <select name="number_auto_waybill{{$i}}">
+                                            @foreach ($autoAdmin as $row)
+                                                <option value="{{$row->number}}">{{$row->number}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </td>
+                            @else
+                                <td>
+                                    <div class="select">
+                                        <select name="name_drivers_waybill{{$i}}">
+                                            @foreach ($drivers as $row)
+                                                <option value="{{$row->name}}">{{$row->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="select">
+                                        <select name="number_auto_waybill{{$i}}">
+                                            @foreach ($auto as $row)
+                                                <option value="{{$row->number}}">{{$row->number}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </td>
+                            @endif
                             <td>
                                 <div class="select">
                                     <select name="typeWB{{$i}}">

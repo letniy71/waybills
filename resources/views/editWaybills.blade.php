@@ -8,6 +8,9 @@
 				<h6>Серия {{$waybill->serialWay}}\ Номер {{$waybill->numberWay}}\ Дата {{$waybill->date}}</h6>
         		<thead>
 		          <tr>
+		          	@if(Auth::user()->idRole == 1)
+		          		<th>Бригада</th>
+		          	@endif
 		            <th>Водитель</th>
 		            <th>Номер</th>
 		            <th>Время по графику</th>
@@ -15,6 +18,17 @@
 		        </thead>
         		<tbody>
 					<input type="hidden" name="idWaybills" value="{{$waybill->idWaybills}}">
+					@if(Auth::user()->idRole == 1)
+						<td data-label="Бригада">
+	                		<div class="select">
+	                			<select name="name_brigade_admin">;
+					                @foreach ($brigade as $row)
+					                  <option value="{{$row->nameBrigade}}">{{$row->nameBrigade}}</option>
+					                @endforeach
+					            </select>
+					        </div>
+					    </td>
+					@endif
                 	<td data-label="Водитель">
                 		<div class="select">
                 			<select name="name_drivers_waybill">;

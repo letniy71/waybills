@@ -26,7 +26,7 @@ class WaybillsController extends Controller
     	if(!empty($request->date)){
 
 	    	$date = $request->date;
-
+	    	
 	    	$idBrigade = Auth::user()->idBrigade;
 	    	$waybills = Waybills::where('idBrigade', $idBrigade)
 	    			->where('date', $date)
@@ -49,10 +49,21 @@ class WaybillsController extends Controller
 			    	->get();  
 			$address = Address::where('active', 1)
 			    	->get(); 
-			$typeWB = TypeWB::all();   	
+			$typeWB = TypeWB::all();  
+
+			//Для админа
+			$waybillsAdmin = Waybills::where('date', $date)
+	    					->get(); 
+
+			$driversAdmin = Drivers::where('active', 1)
+			    	->get();
+
+			$autoAdmin = Auto::where('active', 1)
+			    	->get(); 
 
 
-	   		return view('waybills', ['waybills'=>$waybills, 'brigade'=>$brigade, 'route'=>$route, 'org'=>$org, 'mechanics'=>$mechanics, 'drivers'=>$drivers, 'auto'=>$auto, 'address'=>$address,  'dispatchers'=>$dispatchers, 'typeWB'=>$typeWB]);
+
+	   		return view('waybills', ['waybills'=>$waybills, 'brigade'=>$brigade, 'route'=>$route, 'org'=>$org, 'mechanics'=>$mechanics, 'drivers'=>$drivers, 'auto'=>$auto, 'address'=>$address,  'dispatchers'=>$dispatchers, 'typeWB'=>$typeWB,'waybillsAdmin'=>$waybillsAdmin,'driversAdmin'=>$driversAdmin,'autoAdmin'=>$autoAdmin]);
 	   	} else {
 	   		return view('waybills');
 	   	}
@@ -66,11 +77,11 @@ class WaybillsController extends Controller
 		return $num;
     }
 
-//Формируем серийный номер
-    private function addSerialWay($serialSession,$date){
-		$serialSession = $this->addZero($serialSession);
+//Формируем серию
+    private function addSerialWay($nameBrigade,$date){
+		$nameBrigade = $this->addZero($nameBrigade);
 		$serial_date = substr_replace(str_replace('.', '', $date),'', 4, 2);
-		$serialWay = $serial_date . $serialSession;
+		$serialWay = $serial_date . $nameBrigade;
 		$serialWay = $this->addZero($serialWay);
 		return $serialWay;
     }
@@ -99,7 +110,26 @@ class WaybillsController extends Controller
 	    		if(isset($_POST['checkWaybill' .$i]) && $_POST['checkWaybill' . $i] == 'Yes'){
 				    $waybills = new Waybills;
 				    $waybills->date = $request->date;
-				    $waybills->idBrigade = $request->brigade;
+				    //Добавление для админа
+				    if(Auth::user()->idRole == 1){
+				    	$brigade_admin = Brigade::where('active',1)
+				    				->where('nameBrigade',$_POST['name_brigade_admin' .$i])
+				    				->first();
+				    	//Добавляем серию
+				    	$waybills->idBrigade = $brigade_admin->idBrigade;
+
+				    	$waybills->serialWay = $this->addSerialWay($_POST['name_brigade_admin' .$i],$request->date);
+			    		//Добавляем номер путевого листа
+
+						$waybills->numberWay = $this->addNumberWay($request->date,$brigade_admin->idBrigade);
+						//Добавление для пользотвателей
+			    	} else {
+				   		$waybills->idBrigade = $request->brigade;
+
+				   		$waybills->serialWay = $this->addSerialWay($request->brigade,$request->date);
+			    		//Добавляем номер путевого листа
+						$waybills->numberWay = $this->addNumberWay($request->date,$request->brigade);
+					}
 
 
 				    $driver = Drivers::where('active',1)
@@ -107,13 +137,9 @@ class WaybillsController extends Controller
 			    				->first();
 			    	$waybills->idDrivers = $driver->idDrivers;
 
-			    	//Добавляем серию
 			    	
-			    	$waybills->serialWay = $this->addSerialWay($request->brigade,$request->date);
-			    	
-			    	//Добавляем номер путевого листа
-					$waybills->numberWay = $this->addNumberWay($request->date,$request->brigade);
 
+			    
 
 			    	$auto = Auto::where('active',1)
 			    				->where('number',$_POST['number_auto_waybill' .$i])
@@ -169,21 +195,34 @@ class WaybillsController extends Controller
   //Передаем данные для редактирования на страницу редакирования
   public function showEditWaybills(Request $request){
   	$idWaybills = $request->idWaybills;
-  	$idBrigade = Auth::user()->idBrigade;
   	$waybill = Waybills::where('idWaybills', $idWaybills)
-			    	->first();
-	$waybills = Waybills::where('idBrigade', $idBrigade)
-			    	->get();  
+				    	->first();
 
-	$drivers = Drivers::where('active', 1)
-					->where('idBrigade', $idBrigade)
-			    	->get();
-	$auto = Auto::where('active', 1)
-					->where('idBrigade', $idBrigade)
-			    	->get(); 
+  	if(Auth::user()->idRole == 1){
+		$waybills = Waybills::all();  
+
+		$brigade = $brigade = Brigade::where('active', 1)
+				    	->get();
+
+		$drivers = Drivers::where('active', 1)
+				    	->get();
+		$auto = Auto::where('active', 1)
+				    	->get();
+  	} else {
+	  	$idBrigade = Auth::user()->idBrigade;
+		$waybills = Waybills::where('idBrigade', $idBrigade)
+				    	->get();  
+
+		$drivers = Drivers::where('active', 1)
+						->where('idBrigade', $idBrigade)
+				    	->get();
+		$auto = Auto::where('active', 1)
+						->where('idBrigade', $idBrigade)
+				    	->get();
+		}
 	$typeWB = TypeWB::all();
-
-  	return view('editWaybills', ['waybills'=>$waybills, 'waybill'=>$waybill, 'drivers'=>$drivers, 'auto'=>$auto, 'typeWB'=>$typeWB]);
+	
+  	return view('editWaybills', ['waybills'=>$waybills, 'waybill'=>$waybill, 'drivers'=>$drivers, 'auto'=>$auto, 'typeWB'=>$typeWB, 'brigade'=>$brigade]);
 
   }
   //Редактируем выбранный путевой лист
@@ -191,6 +230,12 @@ class WaybillsController extends Controller
   	$idWaybills = $request->idWaybills;
   	$waybills = Waybills::where('idWaybills', $idWaybills)
   				->first();
+  	if(Auth::user()->idRole == 1){
+	  	$brigade = Brigade::where('active',1)
+				    	->where('nameBrigade',$request->name_brigade_admin)
+				    	->first();
+		$waybills->idBrigade = $brigade->idBrigade;
+	}
 
   	$driver = Drivers::where('active',1)
 			    	->where('name',$request->name_drivers_waybill)

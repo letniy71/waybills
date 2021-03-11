@@ -92,8 +92,8 @@ Route::group(['middleware' => 'admin'], function () {
 	//Удаление пользователей
 	Route::post('register/delete', 'App\Http\Controllers\Auth\RegisterController@deleteuser')->name('delete-register');
 	//Редактирование пользователей
-	//Route::post('register/edit', 'App\Http\Controllers\Auth\RegisterController@edituserShow')->name('edit-register-show');
-	//Route::post('register/edit-user', 'App\Http\Controllers\Auth\RegisterController@editRegisterUser')->name('edit-register-user');
+	Route::get('register/edit', 'App\Http\Controllers\Auth\RegisterController@showEditUser')->name('show-edit-user');
+	Route::post('register/edit', 'App\Http\Controllers\Auth\RegisterController@editUser')->name('edit-user');
 
 	
 

@@ -91,7 +91,7 @@ class WaybillsController extends Controller
 
     }
 
-
+//Добавялем путевой лист
     public function addWaybills(Request $request)
   	{
 
@@ -157,7 +157,7 @@ class WaybillsController extends Controller
 		    return redirect("/waybills/?date={$request->date}");
 		
   }
-
+//Удаляем путевой лист
   public function deleteWaybills(Request $request){
 
   	$idWaybills = $request->idWaybills;

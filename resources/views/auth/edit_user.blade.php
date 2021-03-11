@@ -6,11 +6,12 @@
 
 <main>
 	<div class="table-main catalog">
-		<form action="{{route('edit-register-user')}}" method="POST">
-			<table><h6>Логин {{$users->login}}</h6>
+		<form action="{{route('edit-user')}}" method="POST">
+			<table><h6>Логин {{$user->name}}</h6>
         		<thead>
 		          <tr>
 		            <th>Имя</th>
+		            <th>Логин</th>
 		            <th>Пароль</th>
 		            <th>e-mail</th>
 		            <th>Тип УЗ</th>
@@ -18,10 +19,11 @@
 		          </tr>
 		        </thead>
 		        <tbody>
-		        	<input type="hidden" name="id" value="'. $id .'">
-		        	<td data-label="Имя"><input type="text" name="name" value="{{$users->name}}"></td>
-		        	<td data-label="Пароль"><input type="password" name="password" value="{{$users->password}}"></td>
-		        	<td data-label="e-mail"><input type="email" name="email" value="{{$users->email}}"></td></td>
+		        	<input type="hidden" name="id" value="{{$user->id}}">
+		        	<td data-label="Имя"><input type="text" name="name" value="{{$user->name}}"></td>
+		        	<td data-label="Логин"><input type="text" name="login" value="{{$user->login}}"></td>
+		        	<td data-label="Пароль"><input type="password" name="password" value="{{$user->password}}"></td>
+		        	<td data-label="e-mail"><input type="email" name="email" value="{{$user->email}}"></td></td>
 		        	<td>
 			        	<div class="select">
 			        		<select name="role">

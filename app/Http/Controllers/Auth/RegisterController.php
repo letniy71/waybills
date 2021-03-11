@@ -104,47 +104,43 @@ class RegisterController extends Controller
 
     //Удаляем Пользоватля
   public function deleteUser(Request $request){
-
-    DB::update('update users set active = 0 where id = ?', [$request->id]);
-
-/* Так не работает .....
-    $auto = Auto::find($request->idAuto);
-    $auto->active =0;
-    $auto->save();
-    */
+    $idUser = $request->id;
+    $user = User::where('id', $idUser)
+              ->delete();
     return redirect()->route('register');
   }
 
-/*public function editUserShow(Request $request){
-    $users = User::where('id',$request->id)
+  public function deleteWaybills(Request $request){
+
+    $idWaybills = $request->idWaybills;
+    $date = $request->date;
+    $waybills = Waybills::where('idWaybills', $idWaybills)
+              ->delete();
+    return redirect("/waybills/?date={$request->date}");
+  }
+
+//Передаем данные для редактирования на страницу редакирования
+public function showEditUser(Request $request){
+    $idUser = $request->id;
+    $user = User::where('id',$idUser)
             ->first();
+    $users = User::all();
     $brigade = Brigade::where('active', 1)
                 ->get(); 
-        $role = Role::all();
+    $role = Role::all();
 
-    return view('auth/edit_user', ['users'=>$users,'brigade'=>$brigade, 'role'=>$role]); 
+    return view('auth/edit_user', ['users'=>$users,'brigade'=>$brigade, 'role'=>$role, 'user'=>$user]); 
   }
-public function editRegisterUser(Request $request){
+
+//Редактируем пользователя
+public function editUser(Request $request){
     $role = Role::where('name',$request->role)
               ->first();
     $brigade = Brigade::where('nameBrigade',$request->nameBrigade)
               ->first();
-    DB::update('update users set name  = ?, password = ?, email = ?, idRole = ?, idBrigade = ? where id = ?', [$request->name,$request->password,$request->email,$role->idRole,$brigade->idBrigade,$request->id]);
+    DB::update('update users set name  = ?, password = ?, email = ?, idRole = ?, idBrigade = ?, login = ? where id = ?', [$request->name,$request->password,$request->email,$role->idRole,$brigade->idBrigade,$request->login,$request->id]);
     
-              
-    /*$user = User::find($request->id);
-    $user->name = $request->name;
-    $user->password = $request->password;
-    $user->email = $request->email;
-
-    $user->idRole = $role->idRole;
-    $user->name = $brigade->idBrigade;
-
-    $auto->save();
-
-
-
      return redirect()->route('register');
-  }*/
+  }
  
 }

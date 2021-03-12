@@ -86,7 +86,7 @@ Route::group(['middleware' => 'admin'], function () {
 
 //Регистрация пользоватлей
 	//Список пользоватлей
-	Route::get('register', 'App\Http\Controllers\Auth\RegisterController@getUsers');
+	Route::get('register', 'App\Http\Controllers\Auth\RegisterController@getUsers')->name('register');
 	//Добавление пользовтелей
 	Route::post('register', 'App\Http\Controllers\Auth\RegisterController@register')->name('register');
 	//Удаление пользователей
@@ -126,10 +126,3 @@ Route::get('/', function () {
 
 
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

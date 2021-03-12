@@ -30,9 +30,7 @@ class OrganizationController extends Controller
 		    $org->save();
 
 		    return redirect()->route('all-org');
-		} else {
-			echo "заполните данные";
-		}
+		} 
   }
 //Удаляем организации
   public function deleteOrg(Request $request){

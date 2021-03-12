@@ -52,7 +52,7 @@
                 <span>Адрес</span>
               </div>
               <div class="col-lg-8">
-                <input type="text" name="address">
+                <input  required type="text" name="address">
               </div>
             </div>
             <div class="styled-select">

@@ -54,7 +54,7 @@
                 <span>ФИО</span>
               </div>
               <div class="col-lg-8">
-                <input type="text" name="name">
+                <input required type="text" name="name">
               </div>
             </div>
             <div class="row">
@@ -62,7 +62,7 @@
                 <span>Удостоверение</span>
               </div>
               <div class="col-lg-8">
-               <input type="text" name="sertificate">
+               <input required type="text" name="sertificate">
               </div>
             </div>
 

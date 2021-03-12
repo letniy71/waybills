@@ -140,9 +140,6 @@ class WaybillsController extends Controller
 			    	$waybills->idDrivers = $driver->idDrivers;
 
 			    	
-
-			    
-
 			    	$auto = Auto::where('active',1)
 			    				->where('number',$_POST['number_auto_waybill' .$i])
 			    				->first();

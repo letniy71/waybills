@@ -38,9 +38,7 @@ class RouteController extends Controller
 
 		    $route->save();
 		    return redirect()->route('all-route');
-		} else {
-			echo "заполните данные";
-		}
+		} 
   }
 //Удаляем 
   public function deleteRoute(Request $request){

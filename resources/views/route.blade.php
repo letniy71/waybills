@@ -52,7 +52,7 @@
                 <span>Маршрут</span>
               </div>
               <div class="col-lg-8">
-                <input type="text" name="route">
+                <input required type="text" name="route">
               </div>
             </div>
             <div class="styled-select">

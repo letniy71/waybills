@@ -38,9 +38,7 @@ class BrigadeController extends Controller
 		    $brigade->save();
 
 		    return redirect()->route('all-brigade');
-		} else {
-			echo "заполните данные";
-		}
+		} 
   }
 //Удаляем 
   public function deleteBrigade(Request $request){

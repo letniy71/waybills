@@ -52,7 +52,7 @@
                 <span>ФИО</span>
               </div>
               <div class="col-lg-8">
-                <input type="text" name="nameMechanic">
+                <input required type="text" name="nameMechanic">
               </div>
             </div>
             <div class="styled-select">

@@ -49,7 +49,7 @@
                 <span>Подрядчик</span>
               </div>
               <div class="col-lg-8">
-                <input type="text" name="nameOrganization">
+                <input required type="text" name="nameOrganization">
               </div>
             </div>
 

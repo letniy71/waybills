@@ -37,9 +37,7 @@ class MechanicsController extends Controller
 
 		    $mechanics->save();
 		    return redirect()->route('all-mechanics');
-		} else {
-			echo "заполните данные";
-		}
+		} 
   }
 //Удаляем 
   public function deleteMechanics(Request $request){

@@ -81,7 +81,7 @@
 				        	<span>Логин</span>
 				        </div>
 				        <div class="col-lg-8">
-							 <input class="form-control" type="text" name="login">
+							 <input required class="form-control" type="text" name="login">
 						</div>
 				      </div>
 					  <div class="row">

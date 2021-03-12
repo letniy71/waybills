@@ -55,7 +55,7 @@
                 <span>Бригада</span>
               </div>
               <div class="col-lg-8">
-                <input type="text" name="nameBrigade">
+                <input required type="text" name="nameBrigade">
               </div>            
             </div>
             <div class="styled-select">

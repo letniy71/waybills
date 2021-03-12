@@ -15,7 +15,7 @@ class AddressController extends Controller
     	$address = Address::where('active', 1)
 		    	->get();
 		$brigade = Brigade::where('active', 1)
-		    	->get();    	
+		    	->get();    	 
 
 
    		return view('address', ['address'=>$address, 'brigade'=>$brigade]); 
@@ -39,9 +39,7 @@ class AddressController extends Controller
 
 		    $address->save();
 		    return redirect()->route('all-address');
-		} else {
-			return redirect()->route('all-address');
-		}
+		} 
   }
 //Удаляем 
   public function deleteAddress(Request $request){

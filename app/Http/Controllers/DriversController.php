@@ -39,9 +39,7 @@ class DriversController extends Controller
 
 		    $drivers->save();
 		    return redirect()->route('all-drivers');
-		} else {
-			echo "заполните данные";
-		}
+		} 
   }
 //Удаляем 
   public function deleteDrivers(Request $request){

@@ -54,7 +54,7 @@
                 <span>Модель</span>
               </div>
               <div class="col-lg-8">
-                <input type="text" name="model">
+                <input required type="text" name="model">
               </div>
             </div>
             <div class="row">
@@ -62,7 +62,7 @@
                 <span>Номер</span>
               </div>
               <div class="col-lg-8">
-               <input type="text" name="number">
+               <input  required type="text" name="number">
               </div>
             </div>
 

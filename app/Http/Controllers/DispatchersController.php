@@ -37,9 +37,7 @@ class DispatchersController extends Controller
 
 		    $dispatchers->save();
 		    return redirect()->route('all-dispatchers');
-		} else {
-			echo "заполните данные";
-		}
+		} 
   }
 //Удаляем 
   public function deleteDispatchers(Request $request){

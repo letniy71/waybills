@@ -39,8 +39,6 @@ class AutoController extends Controller
 
 		    $auto->save();
 		    return redirect()->route('all-auto');
-		} else {
-			echo "заполните данные";
 		}
   }
 //Удаляем Авто

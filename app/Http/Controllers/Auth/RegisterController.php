@@ -8,11 +8,6 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-
-use App\Models\Brigade;
-use App\Models\Role;
 
 class RegisterController extends Controller
 {
@@ -43,8 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('guest');
-        $this->middleware('admin');
+        $this->middleware('guest');
     }
 
     /**
@@ -53,15 +47,12 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-
-
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'login' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -73,76 +64,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $brigade = Brigade::where('active',1)
-                        ->where('nameBrigade',$data['nameBrigade'])
-                        ->first();
-
-
-        $role = Role::where('name',$data['role'])
-                        ->first();
-
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'login'=> $data['login'],
-            'idBrigade'=> $brigade->idBrigade,
-            'idRole'=> $role->idRole,
         ]);
-
     }
-
-    //Получаем список пользователей
-    public function getUsers()
-    {
-        $users = User::where('active', 1)
-                ->get();
-        $brigade = Brigade::where('active', 1)
-                ->get(); 
-        $role = Role::all();
-
-        return view('auth/register', ['users'=>$users, 'brigade'=>$brigade, 'role'=>$role]); 
-    }
-
-    //Удаляем Пользоватля
-  public function deleteUser(Request $request){
-    $idUser = $request->id;
-    $user = User::where('id', $idUser)
-              ->delete();
-    return redirect()->route('register');
-  }
-
-  public function deleteWaybills(Request $request){
-
-    $idWaybills = $request->idWaybills;
-    $date = $request->date;
-    $waybills = Waybills::where('idWaybills', $idWaybills)
-              ->delete();
-    return redirect("/waybills/?date={$request->date}");
-  }
-
-//Передаем данные для редактирования на страницу редакирования
-public function showEditUser(Request $request){
-    $idUser = $request->id;
-    $user = User::where('id',$idUser)
-            ->first();
-    $users = User::all();
-    $brigade = Brigade::where('active', 1)
-                ->get(); 
-    $role = Role::all();
-
-    return view('auth/edit_user', ['users'=>$users,'brigade'=>$brigade, 'role'=>$role, 'user'=>$user]); 
-  }
-
-//Редактируем пользователя
-public function editUser(Request $request){
-    $role = Role::where('name',$request->role)
-              ->first();
-    $brigade = Brigade::where('nameBrigade',$request->nameBrigade)
-              ->first();
-    DB::update('update users set name  = ?, password = ?, email = ?, idRole = ?, idBrigade = ?, login = ? where id = ?', [$request->name,$request->password,$request->email,$role->idRole,$brigade->idBrigade,$request->login,$request->id]);
-    
-     return redirect()->route('register');
-  }
- 
 }

@@ -18,7 +18,7 @@
                         <span>Введите Ваш логин</span><br>
                         <input placeholder="Логин" id="login" type="name" class="form-control @error('login') is-invalid @enderror" name="login" value="{{ old('login') }}" required autocomplete="login" autofocus><br>
 
-                        @error('email')
+                        @error('mail')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

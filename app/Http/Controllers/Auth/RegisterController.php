@@ -130,8 +130,8 @@ public function editUser(Request $request){
               ->first();
     $brigade = Brigade::where('nameBrigade',$request->nameBrigade)
               ->first();
-    DB::update('update users set name  = ?, password = ?, email = ?, idRole = ?, idBrigade = ?, login = ? where id = ?', [$request->name,$request->password,$request->email,$role->idRole,$brigade->idBrigade,$request->login,$request->id]);
-    
+    $password = Hash::make($request->password);
+    DB::update('update users set name  = ?, password = ?, email = ?, idRole = ?, idBrigade = ?, login = ? where id = ?', [$request->name,$password,$request->email,$role->idRole,$brigade->idBrigade,$request->login,$request->id]);
      return redirect()->route('register');
   }
  

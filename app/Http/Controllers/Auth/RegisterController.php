@@ -70,4 +70,48 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+        //Получаем список пользователей
+    public function getUsers()
+    {
+        $users = User::where('active', 1)
+                ->get();
+        $brigade = Brigade::where('active', 1)
+                ->get(); 
+        $role = Role::all();
+
+        return view('auth/register', ['users'=>$users, 'brigade'=>$brigade, 'role'=>$role]); 
+    }
+
+    //Удаляем Пользоватля
+  public function deleteUser(Request $request){
+    $idUser = $request->id;
+    $user = User::where('id', $idUser)
+              ->delete();
+    return redirect()->route('register');
+  }
+
+//Передаем данные для редактирования на страницу редакирования
+public function showEditUser(Request $request){
+    $idUser = $request->id;
+    $user = User::where('id',$idUser)
+            ->first();
+    $users = User::all();
+    $brigade = Brigade::where('active', 1)
+                ->get(); 
+    $role = Role::all();
+
+    return view('auth/edit_user', ['users'=>$users,'brigade'=>$brigade, 'role'=>$role, 'user'=>$user]); 
+  }
+
+//Редактируем пользователя
+public function editUser(Request $request){
+    $role = Role::where('name',$request->role)
+              ->first();
+    $brigade = Brigade::where('nameBrigade',$request->nameBrigade)
+              ->first();
+    DB::update('update users set name  = ?, password = ?, email = ?, idRole = ?, idBrigade = ?, login = ? where id = ?', [$request->name,$request->password,$request->email,$role->idRole,$brigade->idBrigade,$request->login,$request->id]);
+    
+     return redirect()->route('register');
+  }
 }

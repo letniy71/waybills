@@ -92,6 +92,7 @@ class WaybillsController extends Controller
     private function addNumberWay($date,$idBrigade){
     	$count= Waybills::where('idBrigade', $idBrigade)
 	    			->where('date', $date)
+	    			->where('active',1)
 			    	->count();
 
 		if($count>0){
@@ -114,11 +115,11 @@ class WaybillsController extends Controller
 				    $waybills->date = $request->date;
 				    //Добавление для админа
 				    if(Auth::user()->idRole == 1){
-				    	$brigade_admin = Brigade::where('active',1)
-				    				->where('nameBrigade',$_POST['name_brigade_admin' .$i])
+				    	$brigade_admin= Brigade::where('nameBrigade',$_POST['name_brigade_admin' .$i])
 				    				->first();
+				    	$idBrigade = $brigade_admin->idBrigade;
 				    	//Добавляем серию
-				    	$waybills->idBrigade = $brigade_admin->idBrigade;
+				    	$waybills->idBrigade = $idBrigade;
 
 				    	$waybills->serialWay = $this->addSerialWay($_POST['name_brigade_admin' .$i],$request->date);
 			    		//Добавляем номер путевого листа
@@ -126,9 +127,15 @@ class WaybillsController extends Controller
 						$waybills->numberWay = $this->addNumberWay($request->date,$brigade_admin->idBrigade);
 						//Добавление для пользотвателей
 			    	} else {
-				   		$waybills->idBrigade = $request->brigade;
+			    		$idBrigade = $request->brigade;
 
-				   		$waybills->serialWay = $this->addSerialWay($request->brigade,$request->date);
+						$brigade_user = Brigade::where('active',1)
+			    					->where('idBrigade',$idBrigade)
+			    					->first();
+
+				   		$waybills->idBrigade = $idBrigade;
+
+				   		$waybills->serialWay = $this->addSerialWay($brigade_user->nameBrigade,$request->date);
 			    		//Добавляем номер путевого листа
 						$waybills->numberWay = $this->addNumberWay($request->date,$request->brigade);
 					}
@@ -146,29 +153,30 @@ class WaybillsController extends Controller
 			    	$waybills->idAuto = $auto->idAuto;
 
 			    	$dispatcher = Dispatchers::where('active',1)
-			    				->where('idBrigade',$request->brigade)
+			    				->where('idBrigade',$idBrigade)
 			    				->first();
 			    	$waybills->idDispatcher = $dispatcher->idDispatcher;
 
+
 			    	$mechanic = Mechanics::where('active',1)
-			    				->where('idBrigade',$request->brigade)
+			    				->where('idBrigade',$idBrigade)
 			    				->first();
 
 			    	$waybills->idMechanics = $mechanic->idMechanics;
 
 			    	$route = Route::where('active',1)
-			    				->where('idBrigade',$request->brigade)
+			    				->where('idBrigade',$idBrigade)
 			    				->first();
 
 			    	$waybills->idroute = $route->idroute;
 
 			    	$brigade_org = Brigade::where('active',1)
-			    				->where('idBrigade',$request->brigade)
+			    				->where('idBrigade',$idBrigade)
 			    				->first();
 			    	$waybills->idorganization = $brigade_org->idorganization;
 
 			    	$address = Address::where('active',1)
-			    				->where('idBrigade',$request->brigade)
+			    				->where('idBrigade',$idBrigade)
 			    				->first();
 			    	$waybills->idAddress = $address->idAddress;
 

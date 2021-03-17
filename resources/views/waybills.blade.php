@@ -15,7 +15,18 @@
                 </form>
             </div>
         </div>
-    <div class="col-md-6 text-right"><a href ="allxlsx.php"><button class="blue_btn alldown">Скачать все</button></a></div>
+        @if(!empty($_GET['date']))
+            <form action="{{route('save-all-waybills')}}" method="POST">
+                <div class="col-md-6 text-right">
+                    <input type="hidden" name="idBrigade" value="{{Auth::user()->idBrigade}}">
+                    <input type="hidden" name="date" value="{{$_GET['date']}}">
+
+                    
+                    <button class="blue_btn alldown">Скачать все</button>
+                    {{ csrf_field()}}
+                </div>
+            </form>
+        @endif
   </div>
 	<div class="table-main catalog">
     <h6 style="margin-bottom: 20px;">Путевые листы за 

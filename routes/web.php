@@ -116,7 +116,7 @@ Route::post('waybills/delete', 'App\Http\Controllers\WaybillsController@deleteWa
 //Редактирование Путевых Листов
 Route::get('waybills/edit', 'App\Http\Controllers\WaybillsController@showEditWaybills')->name('show-edit-waybills');
 Route::post('waybills/edit', 'App\Http\Controllers\WaybillsController@editWaybills')->name('edit-waybills');
-
+Route::post('waybills/save', 'App\Http\Controllers\SaveExcelController@saveXlsx')->name('save-waybills');
 
 Route::get('/', function () {
     return redirect()->route('all-waybills');

@@ -39,6 +39,7 @@
         <th>Механик</th>
         <th>Время по графику</th>
         <th>Редактировать</th>
+        <th>скачать</th>
         @if(Auth::user()->idRole == 1)
             <th>Удалить</th>
         @endif
@@ -65,6 +66,14 @@
                                     <input type="hidden" name="idWaybills" value="{{$row->idWaybills}}">
                                     <input type="hidden"  name="date" value="{{$row->date}}">
                                     <input class="button_form"  type="submit" value="редактировать">
+                                </form>
+                            </td>
+                            <td data-label="Скачать">
+                                <form action="{{route('save-waybills')}}" method="POST">
+                                    <input type="hidden" name="idWaybills" value="{{$row->idWaybills}}">
+                                    <input type="hidden"  name="date" value="{{$row->date}}">
+                                    <input class="button_form"  type="submit" value="Скачать">
+                                    {{ csrf_field()}}
                                 </form>
                             </td>
                             <td data-label="Удалить">
@@ -96,6 +105,13 @@
                                     <input type="hidden" name="idWaybills" value="{{$row->idWaybills}}">
                                     <input type="hidden"  name="date" value="{{$row->date}}">
                                     <input class="button_form"  type="submit" value="редактировать">
+                                </form>
+                            </td>
+                            <td data-label="Скачать">
+                                <form action="{{route('save-waybills')}}" method="POST">
+                                    <input type="hidden" name="idWaybills" value="{{$row->idWaybills}}">
+                                    <input type="hidden"  name="date" value="{{$row->date}}">
+                                    <input class="button_form"  type="submit" value="Скачать">
                                 </form>
                             </td>
               		    </tr>

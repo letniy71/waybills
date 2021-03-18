@@ -34,14 +34,11 @@
 						Вы зашли как {{Auth::user()->name}}
 					</div>
 					<div class="col-lg-1 col-xs-1">
-						<a class="setting-links" href="../pages/report_admin.php">Отчеты</a>
-					</div>
-					<div class="col-lg-1 col-xs-1">
 						<a class="setting-links" href="/settings">Настройки</a>
 					</div>
-					<div class="col-lg-1 col-xs-1">
+					<!--<div class="col-lg-1 col-xs-1">
 						<a class="setting-links" href="../pages/support.php">Помощь</a>
-					</div>
+					</div>-->
 					<div class="col-lg-3 col-xs-3" style="text-align: right;">
                             <a  href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         Выход

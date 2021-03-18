@@ -72,13 +72,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+      $role = Role::where('name',$data['role'])
+                        ->first();
+      if($role->idRole == 1) {
+        $brigade = Brigade::where('nameBrigade',0)
+                        ->first();
+      } else {
         $brigade = Brigade::where('active',1)
                         ->where('nameBrigade',$data['nameBrigade'])
                         ->first();
-
-
-        $role = Role::where('name',$data['role'])
-                        ->first();
+      }
 
         return User::create([
             'name' => $data['name'],
@@ -128,8 +131,13 @@ public function showEditUser(Request $request){
 public function editUser(Request $request){
     $role = Role::where('name',$request->role)
               ->first();
-    $brigade = Brigade::where('nameBrigade',$request->nameBrigade)
+    if($role->idRole == 1) {
+      $brigade = Brigade::where('nameBrigade',0)
               ->first();
+    }else{
+      $brigade = Brigade::where('nameBrigade',$request->nameBrigade)
+              ->first();
+    }
     $password = Hash::make($request->password);
     DB::update('update users set name  = ?, password = ?, email = ?, idRole = ?, idBrigade = ?, login = ? where id = ?', [$request->name,$password,$request->email,$role->idRole,$brigade->idBrigade,$request->login,$request->id]);
      return redirect()->route('register');

@@ -91,7 +91,7 @@
                               <form action="{{route('delete-waybills')}}" method="post">
                                 <input type="hidden"  name="idWaybills" value="{{$row->idWaybills}}">
                                 <input type="hidden"  name="date" value="{{$row->date}}">
-                                <input class="button_form catalog-input" type="submit" value="удалить">
+                                <input class="button_form " type="submit" value="удалить">
                                 {{ csrf_field()}}
                               </form>
                             </td>
